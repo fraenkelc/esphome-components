@@ -90,17 +90,40 @@ text_sensor:
     id: esphome_version
 
 binary_sensor:
+  # Power state
+  - platform: ups_hid
+    ups_hid_id: ups_monitor
+    name: "UPS Online"
+    id: ups_online
+    type: online
+    device_class: power
+
+  - platform: ups_hid
+    ups_hid_id: ups_monitor
+    name: "UPS On Battery"
+    id: ups_on_battery
+    type: on_battery
+    device_class: problem
+
+  # device_class battery means "on = battery LOW" in Home Assistant
+  - platform: ups_hid
+    ups_hid_id: ups_monitor
+    name: "Battery Low"
+    id: battery_low
+    type: low_battery
+    device_class: battery
+
   # Additional status sensors
   - platform: ups_hid
     ups_hid_id: ups_monitor
     name: "Battery Charging"
     id: battery_charging
     type: charging
-    device_class: battery
-    
+    device_class: battery_charging
+
   - platform: ups_hid
     ups_hid_id: ups_monitor
     name: "Overload Warning"
     id: overload_warning
     type: overload
-    device_class: power
+    device_class: problem

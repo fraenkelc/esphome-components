@@ -38,7 +38,8 @@ sensor:
     id: battery_charge_low
     type: battery_charge_low
     unit_of_measurement: "%"
-    device_class: battery
+    # No device_class: this is a configured threshold, not the battery level
+    entity_category: diagnostic
     state_class: measurement
     accuracy_decimals: 0
 
